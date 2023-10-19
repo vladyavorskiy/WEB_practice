@@ -10,6 +10,7 @@
     }
 }());
 
+
 (function(){
     const burgerItem = document.querySelector('.burger');
     const menu = document.querySelector('.header_nav')
@@ -24,8 +25,6 @@
     menuCloseItem.addEventListener('click', () => {
         menu.classList.remove('header_nav_active');
     });
-    
-
 }());
 
 
@@ -69,7 +68,73 @@
 }());
 
 
+{/* <h2 id="searchModalTitle"></h2>
+<div class="loader"></div>
+<button id="closeModal">✕</button> */}
 
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.search_form');
+    const modal = document.getElementById('searchModal');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const inputGo = document.querySelector('input[name="user_like_to_go"]');
+        const inputDo = document.querySelector('input[name="user_like_to_do"]');
+  
+        if (inputGo.value && inputDo.value) {     
+            
+            document.querySelector('.search_form_submit').classList.add('disable');
+
+            const modalTitle = document.createElement('h1');
+            modalTitle.className = "search_modal_title";
+            modalTitle.textContent = "Поиск:"
+            modal.appendChild(modalTitle);
+
+            const Gotext = document.createElement('h2');
+            Gotext.className = "godo_text";
+            modal.appendChild(Gotext);
+
+            const Dotext = document.createElement('h2');
+            Dotext.className = "godo_text";
+            modal.appendChild(Dotext);
+
+            const loader = document.createElement('div');
+            loader.className = "loader";
+            modal.appendChild(loader);
+
+            const closeModal = document.createElement('span');
+            closeModal.className = "close_modal";
+            closeModal.innerHTML = "&times;";
+            modal.appendChild(closeModal);
+
+            Gotext.innerHTML = `Куда: ${inputGo.value}`;
+            Dotext.innerHTML = `Чем: ${inputDo.value}`;
+
+            modal.style.display = 'block';
+
+
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                modalTitle.remove();
+                Gotext.remove();
+                Dotext.remove();
+                loader.remove();
+                closeModal.remove();
+                document.querySelector('.search_form_submit').classList.remove('disable');
+              });
+        }
+
+        
+    });
+  
+    
+  });
+
+
+
+
+/* Форма и валидация */
 
 const modal = document.getElementById('modal');
 const btn = document.getElementById('show-modal');
@@ -107,13 +172,13 @@ const form = {
 }
 
 function checkForm(){
-    // const email = form.email.getElementsByTagName('input')[0].value
-    // const password = form.password.getElementsByTagName('input')[0].value
-    // const phone = form.phone.getElementsByTagName('input')[0].value
-    // const firstname = form.firstname.getElementsByTagName('input')[0].value
-    // const lastname = form.lastname.getElementsByTagName('input')[0].value
+    const email = form.email.getElementsByTagName('input')[0].value
+    const password = form.password.getElementsByTagName('input')[0].value
+    const phone = form.phone.getElementsByTagName('input')[0].value
+    const firstname = form.firstname.getElementsByTagName('input')[0].value
+    const lastname = form.lastname.getElementsByTagName('input')[0].value
     
-    //form.email.getElementsByTagName('input')[0].value
+    form.email.getElementsByTagName('input')[0].value
 
     if(email && password && phone && firstname && lastname){
         form.button.classList.remove('disable')
@@ -283,6 +348,8 @@ form.firstname.getElementsByTagName('input')[0].onfocus = deleteErrorFirstname
 
 
 
+/* Лайки */
+
 // const post_like = document.querySelector('.top_card_pic');
 // const like_add = document.querySelector('.top_card_likes_value');
 // const like_ico = document.querySelector('.top_card_likes_ico');
@@ -349,3 +416,10 @@ cards.forEach(card => {
       }
   });
 });
+
+
+
+
+
+
+

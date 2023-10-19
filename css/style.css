@@ -614,6 +614,11 @@ img{
     background: #1666cf;
 }
 
+.search_form_submit.disable{
+    pointer-events: none;
+    background-color: #555;
+}
+
 /* Intro styles end */
 
 
@@ -1073,17 +1078,19 @@ img{
 
 
 
+
+
 :root{
     --focus_color: #66b5f5;
     --error_color: #ff5757
 }
+
 /* Form valid start*/ 
 
-
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
-    z-index: 15;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%; 
@@ -1211,12 +1218,72 @@ img{
     display: block;
 }
 
-
-
-
 /* Form valid end*/ 
 
 
+
+
+.modal_search {
+    position: fixed;
+    display: none;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    width: 350px; 
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+.search_modal_title{
+    margin-left: 15px;
+    position: relative;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 42px;
+    margin-bottom: 16px;
+}
+
+.godo_text{
+    margin-left: 15px;
+    max-width: 300px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.close_modal{
+    width: 20px;
+    height: 20px;
+    float: right;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close_modal:hover,
+.close_modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 
 
