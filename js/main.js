@@ -107,13 +107,15 @@ const form = {
 }
 
 function checkForm(){
-    const email = form.email.getElementsByTagName('input')[0].value
-    const password = form.password.getElementsByTagName('input')[0].value
-    const phone = form.phone.getElementsByTagName('input')[0].value
-    const firstname = form.firstname.getElementsByTagName('input')[0].value
-    const lastname = form.lastname.getElementsByTagName('input')[0].value
+    // const email = form.email.getElementsByTagName('input')[0].value
+    // const password = form.password.getElementsByTagName('input')[0].value
+    // const phone = form.phone.getElementsByTagName('input')[0].value
+    // const firstname = form.firstname.getElementsByTagName('input')[0].value
+    // const lastname = form.lastname.getElementsByTagName('input')[0].value
     
-    if(email && password){
+    //form.email.getElementsByTagName('input')[0].value
+
+    if(email && password && phone && firstname && lastname){
         form.button.classList.remove('disable')
     }
     else{
@@ -205,6 +207,11 @@ function validateFirstname(){
 }
 
 
+// function deleteError (e, name){
+//     form[name].classList.remove('error')
+//     form[name].classList.remove('view')
+// }
+
 function deleteErrorEmail(){
     form.email.classList.remove('error')
     form.errorEmail.classList.remove('view')
@@ -233,17 +240,12 @@ function deleteErrorPhone(){
 function SignIn(){
     alert('Вы вошли')
     modal.style.display = "none";
-    const emailInput = form.email.getElementsByTagName('input')[0];
-    const passwordInput = form.password.getElementsByTagName('input')[0];
-    const phonedInput = form.phone.getElementsByTagName('input')[0];
-    const firstnamedInput = form.firstname.getElementsByTagName('input')[0];
-    const lastnameInput = form.lastname.getElementsByTagName('input')[0];
-
-    emailInput.value = '';
-    passwordInput.value = '';
-    phonedInput.value = '';
-    firstnamedInput.value = '';
-    lastnameInput.value = '';
+    
+    form.email.getElementsByTagName('input')[0].value = '';
+    form.password.getElementsByTagName('input')[0].value = '';
+    form.phone.getElementsByTagName('input')[0].value = '';
+    form.firstname.getElementsByTagName('input')[0].value = '';
+    form.lastname.getElementsByTagName('input')[0].value = '';
 
     form.phone.classList.remove('filed')
     form.password.classList.remove('filed')
@@ -277,3 +279,73 @@ form.lastname.getElementsByTagName('input')[0].onfocus = deleteErrorLastname
 form.firstname.getElementsByTagName('input')[0].onblur = validateFirstname
 form.firstname.getElementsByTagName('input')[0].onfocus = deleteErrorFirstname
 
+
+
+
+
+// const post_like = document.querySelector('.top_card_pic');
+// const like_add = document.querySelector('.top_card_likes_value');
+// const like_ico = document.querySelector('.top_card_likes_ico');
+
+// //like_add.innerText='No';
+
+
+// post_like.addEventListener('dblclick', () => {
+//     var currentValue = parseInt(like_add.innerText);
+//     var newValue = currentValue + 1;
+//     like_add.innerText = newValue;
+
+
+
+//     like_ico.classList.add('top_card_likes_add_like');
+//     setTimeout(()=>{
+//         like_ico.classList.remove('top_card_likes_add_like');
+//     }, 1000)
+// })
+
+
+
+
+const cards = document.querySelectorAll('.top_card'); 
+
+cards.forEach(card => {
+
+  const postLike = card.querySelector('.top_card_pic');
+  const likeAdd = card.querySelector('.top_card_likes_value');
+  const likeAnim = card.querySelector('.top_card_likes_ico');
+  const likeIco = card.querySelector('.top_card_likes');
+
+  let isLiked = false;
+
+  postLike.addEventListener('dblclick', () => {
+
+    // let currentValue = parseInt(likeAdd.innerText);
+    // let newValue = currentValue + 1;
+    // likeAdd.innerText = newValue;
+
+    // likeIco.classList.add('top_card_likes_add_like');
+    // setTimeout(() => {
+    //   likeIco.classList.remove('top_card_likes_add_like');
+    // }, 1000);
+
+    if(isLiked) {     
+        likeAdd.innerText = parseInt(likeAdd.innerText) - 1;
+        likeIco.style.background = 'url(../img/svg/heart_ico.svg) no-repeat right';
+        isLiked = false;
+    
+    }else {    
+        likeAdd.innerText = parseInt(likeAdd.innerText) + 1;
+    
+        likeAnim.classList.add('top_card_likes_add_like');
+        likeIco.style.background = 'url(../img/svg/heart_active_ico.svg) no-repeat right';
+
+        setTimeout(() => {
+            likeAnim.classList.remove('top_card_likes_add_like');
+
+        }, 1000);
+    
+        isLiked = true;
+    
+      }
+  });
+});

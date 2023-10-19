@@ -878,7 +878,42 @@ img{
 .top_card_pic{
     position: relative;
     margin-bottom: 45px;
+    cursor: pointer;
 }
+
+.top_card_likes_ico{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0px 20px 40px rgba(0,0,0,0.7));
+    transform-origin: center center;
+    width: 0px;
+}
+
+.top_card_likes_add_like{
+    animation: 2s ani ease-in-out forwards;
+}
+
+@keyframes ani {
+    0%{
+        width: 0;
+    }
+    10%{
+        width: 150px;
+    }
+    20%{
+        width: 120px;
+    }
+    40%{
+        width: 130px;
+    }
+    50%, 100%{
+        width: 0;
+    }
+}
+
+
 
 .top_card{
     display: flex;
@@ -889,6 +924,7 @@ img{
 .top_card_ico{
     height: 370px;
     object-fit: cover;
+
 }
 
 .top_card_stats{
@@ -923,6 +959,7 @@ img{
     margin-right: 14px;
     margin-left: auto;
 }
+
 
 .top_card_comments{
     font-size: 16px;
