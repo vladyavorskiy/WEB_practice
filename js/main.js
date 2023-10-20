@@ -68,9 +68,6 @@
 }());
 
 
-{/* <h2 id="searchModalTitle"></h2>
-<div class="loader"></div>
-<button id="closeModal">✕</button> */}
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.search_form');
@@ -373,48 +370,84 @@ form.firstname.getElementsByTagName('input')[0].onfocus = deleteErrorFirstname
 
 
 
-const cards = document.querySelectorAll('.top_card'); 
+// const cards = document.querySelectorAll('.top_card'); 
 
-cards.forEach(card => {
+// cards.forEach(card => {
 
-  const postLike = card.querySelector('.top_card_pic');
+//   const postLike = card.querySelector('.top_card_pic');
+//   const likeAdd = card.querySelector('.top_card_likes_value');
+//   const likeAnim = card.querySelector('.top_card_likes_ico');
+//   const likeIco = card.querySelector('.top_card_likes');
+
+//   let isLiked = false;
+
+//   postLike.addEventListener('dblclick', () => {
+
+//     // let currentValue = parseInt(likeAdd.innerText);
+//     // let newValue = currentValue + 1;
+//     // likeAdd.innerText = newValue;
+
+//     // likeIco.classList.add('top_card_likes_add_like');
+//     // setTimeout(() => {
+//     //   likeIco.classList.remove('top_card_likes_add_like');
+//     // }, 1000);
+
+//     if(isLiked) {     
+//         likeAdd.innerText = parseInt(likeAdd.innerText) - 1;
+//         likeIco.style.background = 'url(../img/svg/heart_ico.svg) no-repeat right';
+//         isLiked = false;
+    
+//     }else {    
+//         likeAdd.innerText = parseInt(likeAdd.innerText) + 1;
+    
+//         likeAnim.classList.add('top_card_likes_add_like');
+//         likeIco.style.background = 'url(../img/svg/heart_active_ico.svg) no-repeat right';
+
+//         setTimeout(() => {
+//             likeAnim.classList.remove('top_card_likes_add_like');
+
+//         }, 1000);
+    
+//         isLiked = true;
+    
+//       }
+//   });
+// });
+
+
+
+
+
+const cardsContainer = document.querySelector('.top_cards');
+
+cardsContainer.addEventListener('dblclick', event => {
+  const card = event.target.closest('.top_card');
+
+  if (!card) return;
+
   const likeAdd = card.querySelector('.top_card_likes_value');
   const likeAnim = card.querySelector('.top_card_likes_ico');
   const likeIco = card.querySelector('.top_card_likes');
 
-  let isLiked = false;
+  let isLiked = card.dataset.liked === 'true';
 
-  postLike.addEventListener('dblclick', () => {
+  if (isLiked) {
+    likeAdd.innerText = parseInt(likeAdd.innerText) - 1;
+    likeIco.style.background = 'url(../img/svg/heart_ico.svg) no-repeat right';
+    card.dataset.liked = 'false';
+  } else {
+    likeAdd.innerText = parseInt(likeAdd.innerText) + 1;
 
-    // let currentValue = parseInt(likeAdd.innerText);
-    // let newValue = currentValue + 1;
-    // likeAdd.innerText = newValue;
+    likeAnim.classList.add('top_card_likes_add_like');
+    likeIco.style.background = 'url(../img/svg/heart_active_ico.svg) no-repeat right';
 
-    // likeIco.classList.add('top_card_likes_add_like');
-    // setTimeout(() => {
-    //   likeIco.classList.remove('top_card_likes_add_like');
-    // }, 1000);
+    setTimeout(() => {
+      likeAnim.classList.remove('top_card_likes_add_like');
+    }, 1000);
 
-    if(isLiked) {     
-        likeAdd.innerText = parseInt(likeAdd.innerText) - 1;
-        likeIco.style.background = 'url(../img/svg/heart_ico.svg) no-repeat right';
-        isLiked = false;
-    
-    }else {    
-        likeAdd.innerText = parseInt(likeAdd.innerText) + 1;
-    
-        likeAnim.classList.add('top_card_likes_add_like');
-        likeIco.style.background = 'url(../img/svg/heart_active_ico.svg) no-repeat right';
+    card.dataset.liked = 'true';
+  }
 
-        setTimeout(() => {
-            likeAnim.classList.remove('top_card_likes_add_like');
-
-        }, 1000);
-    
-        isLiked = true;
-    
-      }
-  });
 });
 
 
